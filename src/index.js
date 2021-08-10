@@ -29,6 +29,31 @@ export class Index extends Component {
   })
  }
 
+ deleteTodoList = (index) => {
+  const newTodo = this.state.todos.filter((todo, i) => {
+   return index === i ? false : true;
+  });
+  this.setState({
+   todos: newTodo
+  })
+ }
+
+ editTodofromState = (index, newText) => {
+  const newTodos = this.state.todos.map((todo, i) => {
+   if (index === i) {
+    return {
+     ...todo,
+     text: newText
+    }
+   }
+   return todo;
+  })
+  this.setState({
+   todos: newTodos
+  })
+ }
+
+
  toggleComplete = (index) => {
   const newTodo = this.state.todos.map((todo, i) => {
    if (index === i) {
@@ -51,6 +76,8 @@ export class Index extends Component {
      {this.state.todos.map((todo, index) => {
       return (
        <TodoItem
+        editTodofromState={this.editTodofromState}
+        deleteTodoList={this.deleteTodoList}
         toggleComplete={this.toggleComplete}
         todo={todo} index={index}  key={index} />
       )
