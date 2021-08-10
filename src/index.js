@@ -21,7 +21,8 @@ export class Index extends Component {
  // Change state
  addTodoToState = (text) => {
   const newTodo = this.state.todos.concat({
-    text
+   text,
+   completed: false
   })
   this.setState({
    todos: newTodo
