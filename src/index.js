@@ -1,17 +1,68 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Component } from 'react'
+import ReactDom from 'react-dom';
+import AddTodo from './AddTodo';
+import TodoItem from './TodoItem';
+export class Index extends Component {
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ // Define state
+ state = {
+  todos: [
+   {
+    text: "Buy Milk",
+    completed: true
+   },
+   {
+    text: "Buy Egg",
+    completed: false
+   }
+  ]
+ }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ // Change state
+ addTodoToState = (text) => {
+  const newTodo = this.state.todos.concat({
+    text
+  })
+  this.setState({
+   todos: newTodo
+  })
+ }
+
+ toggleComplete = (index) => {
+  const newTodo = this.state.todos.map((todo, i) => {
+   if (index === i) {
+    return {
+     ...todo,
+     completed:!todo.completed
+     }
+   }
+   return todo;
+  })
+  this.setState({
+   todos: newTodo
+  })
+ }
+ 
+ render() {
+  return (
+   <div>
+    <ul>
+     {this.state.todos.map((todo, index) => {
+      return (
+       <TodoItem
+        toggleComplete={this.toggleComplete}
+        todo={todo} index={index}  key={index} />
+      )
+     })}
+    </ul>
+    <AddTodo addTodoToState={this.addTodoToState} />
+   </div>
+  )
+ }
+}
+
+export default Index
+
+
+ReactDom.render(<Index />, document.querySelector('#root'));
+
