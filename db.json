@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "text": "Learn More React Js",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "text": "SHYAM",
+      "completed": false,
+      "id": 2
+    },
+    {
+      "text": "RAM JANKI",
+      "completed": false,
+      "id": 3
+    }
+  ]
+}
