@@ -1,1 +1,1 @@
-export const URL = 'http://localhost:3333/todos/';
+export const externalUrl = "https://jsonplaceholder.typicode.com/posts?userId";
